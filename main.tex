@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{chngpage}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{gensymb}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{braket}
+\usepackage{pgfplots}
+\usepackage{bbm}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+
+\usetikzlibrary{decorations.markings}
+
+\theoremstyle{plain}
+
+%\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathcal{F}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\Sum}{\sum_{n=0}^\infty}
+\newcommand{\Res}[1]{\text{Res}f(z)\Big|_{#1}}
+\newcommand{\vettore}[1]{\overrightarrow{#1}}
+\renewcommand{\k}{\mathbf{k}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\p}{\mathbf{p}}
+
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{coro}[thm]{Corollario}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definizione}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+
+
+\title{\textbf{Basic Concepts of Quantum Physics}}
+\author{Marco Canteri}
+\date{\today}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+
+\usepackage[a4paper, inner=1.5cm, outer=3cm, top=3cm, 
+bottom=3cm, bindingoffset=1cm,headheight=110pt]{geometry} 
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot[C]{\thepage}
+\begin{document}
+\maketitle
+\section{Quantum model of light}
+\subsection{Introduction}
+Historically the first quantum model of light is due to Planck, he developed a theory where light is quantized and it is exchanged with matter in packages. Thanks to this theory he could explain the black body radiation. The energy of light is therefore
+\begin{equation} E_n = n\hbar \nu \qquad n\in \N\end{equation}
+where $\hbar$ is the reduced Planck constant and $\nu$ the frequency of a monochromatic wave of light.\\
+After Planck, Einstein claimed that light is made of photons, which behave as particles. Hence, the plane wave
+\begin{equation}\mathbf{E}(\x,t) = \frac{1}{2}\left(\mathbf{A}e^{i(\k\cdot \x)-\omega t} + \text{c.c}\right)\end{equation}
+can be seen as composed by single photon with energy and momentum given by
+\begin{equation}E_\nu = \hbar \omega = h\nu \qquad \p = \hbar \k\end{equation}
+where this dispersion relation holds: $\omega = c |\k| = 2\pi \nu $. Later QED or Quantum Electrodynamics has been developed, basically it is a relativistic theory of electrons and photons. Instead of the Schroedinger's equation in QED photons and electrons follow the so called Dirac's equation, which is simply a relativistic version of the Schroedinger's equation. However this theory is mathematically very complicated and therefore is hard to use for calculation, furthermore there are problems with infinities, which are solved in a theory called renormalization theory. Due to the complexity of QED, a new theory is born in order to describe light in a simplified way. This theory is nowadays called \emph{Quantum optics}.\\
+Quantum optics is based on the following proprieties:
+\begin{itemize}
+\item Matter is described with Schroedinger's equation
+\item The field of light inside a finite volume is quantized with an infrared (IR) cut-off $\lambda \ll L$, where $L$ is the length of the box side, and with an Ultraviolet (UV) cut-off  $\lambda \gg \lambda_{\omega_{c}}$
+\item A choice of a reference frame is made as well for the gauge. The lab frame, where the box is at rest, is used and it is also used the Coulomb's gauge with sets the diverge of the potential equals to zero:
+\begin{equation}A^\mu = (\phi, \mathbf{A}) \qquad \text{div}\textbf{A} = 0\end{equation}
+\item Quantum optics is also an open system theory. This means that the light going in or out the box as well everything outside the box is described. This is done with the so called Master equation and with density operators.
+\end{itemize}
+This theory is successful and provides a simple description of real word experiments and devices. For example: lasers, spectroscopy, non linear optics, applied quantum information theory, laser cooling, BEC physics, etc.
+\subsection{Quantelung}
+The interaction between matter and light can be described manly with three phenomena 
+\begin{enumerate}[(1)]
+\item Absorption: A photon with frequency $\nu$ is absorbed by an atom at rest, the result is a moving atom in a excited state
+\begin{equation}h\nu_{k} + A_{\mathbf{v}=0} \longrightarrow A^*_{\mathbf{v}=\frac{\hbar \k}{m}}\end{equation}
+the velocity of the excited atom is given by the momentum of the photon divided by the mass of the atom. The kinetic energy of the excited atom is simply $E_k = \frac{(\hbar \k)^2}{2m}$. Therefore the conservation of energy can be written as
+\begin{equation}E_k +\hbar \omega = h\nu\end{equation}
+where $\hbar \omega$ is the difference in energy between the energy level of the ground $\ket{g}$ and excited $\ket{e}$ states of the atom.
+\item Spontaneous emission: An atom at rest in a excited state emits a photon with frequency $\nu$
+\begin{equation}A^*_{\mathbf{v}=0} \longrightarrow A_{\mathbf{v}=-\frac{\hbar \k}{m}} + h \nu_k\end{equation}
+the speed of the atom is due to the recoil. The energy conservation relation is now $h\nu=\hbar\omega-E_k \equiv \hbar \omega -\hbar \omega_r $
+\item Stimulated emission: it is the same of the spontaneous emission, but now the process is stimulated by another photon
+\begin{equation}h\nu + A^*_{\mathbf{v}=0} \longrightarrow A_{\mathbf{v}=-\mathbf{v}_r} + 2 h \nu_k\end{equation}
+the probability of this process to happens is proportional to the number of photons  with frequency $h\nu$, so more photon there are more is stimulated spontaneous emission is negligible over stimulated emission.
+\end{enumerate}
+In order to quantize light we assume a finite volume, no charges inside this volume and no currents in the walls (ideal mirror, perfect conductor). Inside the box Maxwell's equations in free space hold
+\[
+    \begin{alignedat}{3}
+        & & \text{div}\mathbf{B} &=0 & \hskip8em &\text{\rlap{(Maxwell 1)}} \\[0.5ex]
+        & & \text{div}\mathbf{E} &=0 & &\text{\rlap{(Maxwell 2)}} \\[0.5ex]
+        & &\text{rot}\mathbf{E} &=-\frac{\partial \mathbf{B}}{\partial t} & &\text{\rlap{(Maxwell 3)}} \\[0.5ex]
+        & & \text{rot}\mathbf{B} &=\frac{1}{c^2}\frac{\partial \mathbf{E}}{\partial t} & &\text{\rlap{(Maxwell 4)}}
+    \end{alignedat}
+\]
+where also $\frac{1}{c^2} = \varepsilon_0\mu_0$. In the Coulomb gauge the vector potential is divergenceless and the relations with the electric and magnetic fields is the following
+\begin{equation}\label{be}\mathbf{B} = \text{rot}\mathbf{A} \qquad \mathbf{E} = -\frac{\partial \mathbf{A}}{\partial t} \end{equation}
+furthermore $\mathbf{A}(\x,t)$ must also satisfy the boundary condition of the box walls. Using equation \eqref{be} inside (Maxwell 1)-(Maxwell 4) it is possible to obtain the wave equation for $\mathbf{A}(\x,t)$
+\begin{equation}\Box \mathbf{A}(\x,t) = 0 \iff \nabla^2 \mathbf{A}(\x,t)-\frac{1}{c^2}\frac{\partial^2\mathbf{A}}{\partial t^2} = 0\end{equation}
+we need solution fulfilling the boundary conditions, i.e. the electric field is zero at the boundary $\mathbf{E}_{bond} = 0$. We can do an Ansatz and write the potential vector in terms of mode functions
+\begin{equation}\label{ansatz}\mathbf{A}(\x,t) = \sum_k c_k \mathbf{u}_k(\x) e^{-i\omega_k t} + \text{c.c}\end{equation}
+where $c_k$ are complex numbers. Using \eqref{ansatz} inside the wave equation, we can separate the resulting equation in a space equation and a time equation
+\begin{equation}\nabla^2 + \frac{\omega_k^2}{c^2}\mathbf{u}_k(\x)  = 0 \qquad \text{div}\,\mathbf{u}_k(\x) = 0\end{equation}
+\begin{equation}\mathbf{u}_k(\x) = 0 \qquad \x \in \text{Boundaries}\end{equation}
+the last two equations represent an eigenmode of the given volume. It can also be shown that a set of $\{\mathbf{u}_k(\x) \}$ for any finite volume with ideal boundaries forms a complete orthogonal basis set.
+
+\end{document}
+ 
