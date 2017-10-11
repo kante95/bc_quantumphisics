@@ -117,9 +117,97 @@ furthermore $\mathbf{A}(\x,t)$ must also satisfy the boundary condition of the b
 we need solution fulfilling the boundary conditions, i.e. the electric field is zero at the boundary $\mathbf{E}_{bond} = 0$. We can do an Ansatz and write the potential vector in terms of mode functions
 \begin{equation}\label{ansatz}\mathbf{A}(\x,t) = \sum_k c_k \mathbf{u}_k(\x) e^{-i\omega_k t} + \text{c.c}\end{equation}
 where $c_k$ are complex numbers. Using \eqref{ansatz} inside the wave equation, we can separate the resulting equation in a space equation and a time equation
-\begin{equation}\nabla^2 + \frac{\omega_k^2}{c^2}\mathbf{u}_k(\x)  = 0 \qquad \text{div}\,\mathbf{u}_k(\x) = 0\end{equation}
+\begin{equation}\label{helmholtz}\nabla^2 + \frac{\omega_k^2}{c^2}\mathbf{u}_k(\x)  = 0 \qquad \text{div}\,\mathbf{u}_k(\x) = 0\end{equation}
 \begin{equation}\mathbf{u}_k(\x) = 0 \qquad \x \in \text{Boundaries}\end{equation}
-the last two equations represent an eigenmode of the given volume. It can also be shown that a set of $\{\mathbf{u}_k(\x) \}$ for any finite volume with ideal boundaries forms a complete orthogonal basis set.
+the last two equations represent an eigenmode of the given volume. It can also be shown that a set of $\{\mathbf{u}_k(\x) \}$ for any finite volume with ideal boundaries forms a complete orthogonal basis set. Moreover equation \eqref{helmholtz} is usually called Helmholtz equation.\\
+Two examples of optical resonators are the following
+\begin{itemize}
+\item An optical resonator is a box with side of length $l_1,l_2,l_3$ respectively on direction $x,y,z$. A mode inside this box that satisfies the boundary conditions could be for instance
+\[\mathbf{u}_{k,l,m} = \mathbf{e}_{k,l,m} \sin\left(k\frac{\pi x}{l_1}\right)\sin\left(l\frac{\pi y}{l_2}\right)\sin\left(m\frac{\pi z}{l_3}\right)\]
+where $k,l,m$ are three integer numbers and $\mathbf{e}_{k,l,m}$ accounts for polarization. Indeed this mode satisfies Helmholtz equation \eqref{helmholtz} and if we put this mode inside \eqref{helmholtz} it is also possible to calculate the eigenfrequency $\nu_{k,l,m}$. The result is
+\[\nu_{k,l,m} = \frac{c}{2}\sqrt{\left(\frac{k}{l_1}\right)^2+\left(\frac{l}{l_2}\right)^2+\left(\frac{m}{l_3}\right)^2}\] 
+we can notice from this result that the frequency is discrete and not continuous. For example if we take $l_1=l_2=l_3=1$ cm, the fundamental mode, i.e. the mode with $k=l=m=1$, is $\nu_{1,1,1}\simeq 2\cdot 10^{10}$ Hz, which is a microwave.
+\item We can also build a two mirrors resonator made by two curved mirrors in front of each other. The distance between the two mirrors is denoted with $d$, while the height of the mirrors is $r$. The boundary conditions for this system are a null electric field on the mirror and and also an electric field that decays very fast on the side of the system, so the light is confined inside the two mirrors. Analytically the problem is difficult to treat, but we can make some approximations, first at all the size of the system must be in such way that $r,l \gg \lambda$ and $l\gg r$. Otherwise the light is not likely confined inside the mirrors. The Helmholtz for this equation can be written as
+\[\left(\frac{\partial^2}{\partial z^2} + \nabla^2_\perp \right) u_{n,p,l}(\x) + \mathbf{k}^2 u_{n,p,l}(\x) =0\]
+we can write the solution as $ u \sim f(x,y,z)\sin(k_n z) $ and apply the so called parallax approximation, that is $\frac{\partial^2f}{\partial z^2} \ll k_n^2$ so after applying the product rule for the derivative the second derivative of $f$ can be neglected and we can write our Helmholtz equation as
+\[k_n\frac{\partial}{\partial z }(f(x,y,z)\sin(k_n z)) = -\nabla^2_\perp... \]
+this equation is similar in form to Schroedinger equation and can be solved using polar coordinates. For further reference see []. Laguerre gauss modes.\\
+The eigenfrequency of this solution is $\nu_{n,p,l} = \frac{c}{2\pi} k_{n,p,l}$ which is again a discrete number.
+\end{itemize}
+In general inside a resonator we can do a mode expansion of the electromagnetic field such that
+\begin{equation}\label{modeexpansion}\mathbf{A}(\x,t) = \sum_{k}\left( c_k(t)\mathbf{u}_k (\x) + \text{c.c}\right)\end{equation}
+where $k = (n,p,l)$. The constant $c_k(t)$ has a very simple relation with time, indeed it is $c_k(t) = c_ke^{-i\nu_k 2\pi t}$
+which can also be written as a summation of the imaginary and the real part $c_k(t) = c_k^r \cos(\omega_kt) + i c_k^i \sin(\omega_k t)$. This form recall the classical harmonic oscillator and therefore it is simply to quantize. I want to underline that the harmonic oscillator analogy is referred to the amplitude of the field, the field itself is already in analogy with a quantum harmonic oscillator, in fact the eigenfrequencies are discrete. The next step is therefore to quantize the amplitudes in analogy of the quantization of an harmonic oscillator, this leads to a quantum version of the field which, can be show, is the same as if we had quantized Maxwell equation from the beginning.
+\subsection{Canonical quantization}
+As we have seen the potential vector can be expanded in modes \eqref{modeexpansion}, since we are working in the Coulomb Gauge, the electric field is given by
+\[\mathbf{E}(\x,t) = -\frac{\partial \mathbf{A}(\x,t)}{\partial t} = -\sum_{k}\left( \dot{c}_k(t)\mathbf{u}_k (\x) + \text{c.c}\right)\]
+and the magnetic field
+\[\mathbf{B}(\x,t) = \text{rot}\mathbf{A}(\x,t) = \sum_{k}\left( c_k(t)\text{rot}\mathbf{u}_k (\x) + \text{c.c}\right)\]
+the trick is now to rewrite $c_k(t)$ such that it is a product of a constant and a dimensionless term $c_k(t) = \sqrt{\frac{\hbar \omega_{k}}{2\varepsilon_0}} \alpha_k(t)$. Using Maxwell equation is possible to derive the explicit dependence of time $\alpha_k(t) = \alpha_ke^{-i\omega_k t}$. Therefore, we have simply $\dot{\alpha}_k(t) = -i\omega_k\alpha_k(t)$.
+The energy inside the box is
+\[E = \int_V d^3\x\left(\varepsilon_0 \mathbf{E}^2(\x,t)+\frac{1}{\mu_0}\mathbf{B}^2(\x,t)\right) = \frac{1}{2}\sum_k \hbar \omega_k (\alpha_k^*\alpha_k + \alpha_k\alpha_k^*) = \sum_k\hbar \omega |\alpha_k|^2\]
+from this equation we can see that an electromagnetic field behaves as a set of infinity many harmonic oscillator. The quantization can be done by substituting the constants $\alpha_k$ and $\alpha_k^*$ with the corresponding ladder operator $\hat{a}_k$ and $\hat{a}_k^\dagger$ which obey the commutator relations
+\[[\hat{a}_k^\dagger,\hat{a}_{k'}^\dagger] = 0\qquad [\hat{a}_k,\hat{a}_{k'}] = 0 \qquad [\hat{a}_k,\hat{a}_{k'}^\dagger] = \delta_{kk'}   \]
+with this substitution the electric and magnetic field become operators $\hat{\mathbf{E}}(\x,t),\hat{\mathbf{B}}(\x,t)$. The energy became an operator too and it is called Hamiltonian operator 
+\[\hat{H} = \frac{1}{2}\sum_k \hbar \omega_k (\hat{a}_k^\dagger\hat{a}_k + \hat{a}_k\hat{a}_k^\dagger) = \sum_k \hbar \omega_k \left(\hat{a}_k^\dagger\hat{a}_k + \frac{1}{2}\right)\]
+we can notice that there is a zero point energy.
+\subsection{Fock space}
+The Hilbert space where there are these states is called Fock space. We can introduce the states of quantum optics starting from a series of lemmas.
+\begin{enumerate}
+	\item consider a state $\ket{\psi}$ normalized. Action on this state using the lowering operator we get $\hat{a}_k \ket{\psi} = \ket{\varphi}$. The norm of $\ket{\varphi}$ is non negative, so
+	\[ \|\varphi\|^2 = \braket{\psi |\hat{a}^\dagger_k \hat{a}_k|\psi}\ge 0\]
+	if we look now at the form of $\hat{H}$, we can notice easily that
+	\[\braket{\hat{H}} = \braket{\psi|\hat{H}|\psi} \ge 0 \qquad \forall \psi \in \H\]
+	therefore there is a minimum in the energy.
+	\item let us assume the eigenstates of $\hat{H}$ be $\hat{H}\ket{E} = E \ket{E}$. We can show that $\hat{a}_k\ket{E}$ is also an eigenstate of $\hat{H}$. Indeed
+	\[\hat{H} \hat{a}_k \ket{E} = [\hat{H},\hat{a}_k]\ket{E} +\hat{a}_k \hat{H} \ket{E} = -\hbar \omega_k \hat{a}_k + E \hat{a}_k \ket{E} = (E-\hbar \omega_k)\hat{a}_k\ket{E}\]
+	we can see that $\hat{a}_k\ket{E}$ is an eigenstate with a decreased eigenvalue $E-\hbar\omega_k$
+\end{enumerate}
+we can use the second lemma to keep lowering the energy, but this is in contradiction with the first lemma. Hence, if both lemmas must be satisfied it means that exist a state $\ket{0}$ such that $\hat{a}_k \ket{0} = 0$ for all $k$. The state $\ket{0}$ is called vacuum state of the electromagnetic field in the box. The eigenvalue of this state can be easily computed
+\[\hat{H}\ket{0} = \sum_k \hbar \left(\omega_k\hat{a}_k^\dagger\hat{a}_k+\frac{1}{2}\right)\ket{0} = \sum_k \frac{\hbar \omega_k}{2}\ket{0}\]
+which is constant id the modes are finite. Vacuum state has the minimal energy and it is the ground state if the theory. We can demonstrate some proprieties 
+\begin{itemize}
+	\item The expectation value of the electric field is zero for the vacuum state
+	\[\braket{0|\hat{\mathbf{E}}|0} = 0\]
+	\item The fluctuations of the electric field are non-zero
+	\[\braket{0|\hat{\mathbf{E}}^2|0} = \sum_k \frac{\hbar \omega_k}{2\varepsilon_0}\]
+	not only the fluctuations are not zero, but they can also be infinite.
+\end{itemize}
+\subsection{Photons}
+We can introduce a photon number operator as
+\[\hat{N} = \sum_k \hat{a}_k^\dagger \hat{a}_k\]
+It is easy to show that this operator commute with the Hamiltonian $[\hat{N},\hat{H}] = 0$. Therefore, they have a common set of eigenstates. To check if the number operator is consistent we can try to apply it on the vacuum state
+\[\braket{0|\hat{N}|0} = \braket{0|\sum_k \hat{a}_k^\dagger \hat{a}_k |0}= 0\]
+as we expected the vacuum doesn't have any photon. We can now define a 1-photon state as
+\[\ket{\psi_{f_k}} = \sum_K f_k \hat{a}_k^\dagger \ket{0} \qquad f_k\in \C \]
+with the constants normalized $\sum_k |f_k|^2=1$.  Applying the number operator on this state leads to
+\[\hat{N}\ket{\psi_{f_k}} = \sum_k\hat{a}_k^\dagger \hat{a}_k \sum_{k'} f_{k'}\hat{a}_{k'}^\dagger \ket{0} = \sum_{kk'}f_{k'}\hat{a}_k^\dagger \hat{a}_k \hat{a}_{k'}^\dagger \ket{0}= \sum_k f_k \hat{a}_k^\dagger \ket{0}\]
+Hence, the state $\ket{\psi_{f_k}}$ is an eigenstate of $\hat{N}$ with eigenvalue equals to 1. However this state is not an eigenstate of the Hamiltonian
+\[\hat{H}\ket{\psi_{f_k}} = \sum_{kk'} \hbar \omega_k \hat{a}_k^\dagger \hat{a}_kf_{k'}\hat{a}_{k'}^\dagger \ket{0} = \sum_k \hbar \omega_kf_k \hat{a}_k^\dagger \ket{0} \neq E \ket{\psi_{f_k}}\]
+it is an eigenstate only if $f_k = \delta_{kk_0}$, i.e there is only one frequency.\\
+In analogy with a 1-photon state, it is possible to define a 2-photons state as
+\[\ket{\psi_{f_{k_1,k_2}}} = \sum_{k_1,k_2}f_{k_1,k_2}\hat{a}_{k_1}^\dagger \hat{a}_{k_2}^\dagger \ket{0} \]
+Again this state is an eigenstate of the operator $\hat{N}$ with eigenvalue equals to 2. In general $f_{k_1,k_2}$ is a complex number and cannot be written as a product of two terms $f_{k_1,k_2} \neq f_{k_1}f_{k_2}$. This means that a 2-photons state is more complicated than the sum of 1-photon state. This process can be easily generalized and it is possible to define a $n$-photons state
+\[\ket{\psi_{f_{k_1,\dots,k_n}}} = \sum_{k_1,\dots,k_n} f_{k_1,\dots,k_n}\hat{a}_{k_1}^\dagger\dots \hat{a}_{k_n}^\dagger\ket{0}\]
+It is possible to show that photon states with different photon number are orthogonal and they form a complete orthonormal basis of an Hilbert space called Fock space.\\
+From now on we will focus on state limited to one mode, so we will drop the subscript in the ladder operator. The Hamiltonian in this case is simply $H = \hbar \omega a^\dagger a$ and the electric and magnetic field are
+\[\mathbf{E} = i\sqrt{\frac{\hbar \omega}{2\varepsilon_0}} \mathbf{u}_0(a+a^\dagger)\qquad \mathbf{B} = \sqrt{\frac{\hbar \omega}{2\varepsilon_0}}\text{rot}\mathbf{u}_0(a+a^\dagger) \]
+In this example the photon state $\ket{0},\ket{1} = a^\dagger \ket{0},\dots,\ket{n} = \frac{(a^\dagger)^n}{\sqrt{n}}\ket{0}$ are also energy eigenstate. The expectation value of the electric field is 0 regardless the photon state
+\[\braket{n|\hat{\mathbf{E}}|n} = 0\]
+This means that photons don't have any electric field and neither magnetic field. However there are fluctuations of the electric and magnetic field which grow linearly with the photon number and are proportional to the vacuum fluctuations. A more general state could be a superposition of different photon states, for instance
+\[\ket{\psi} = \sum_n c_n \ket{n} \qquad \sum_n |c_n|^2 = 1\]
+The simplest example of such superposition is $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + e^{i\phi} \ket{1})$.  If we evaluate the expectation value of the electric field over this state we get
+\[\braket{\psi|\hat{\mathbf{E}}|\psi} = \braket{\psi|i\sqrt{\frac{\hbar \omega}{2\varepsilon_0}} \mathbf{u}_0(a+a^\dagger)|\psi} \simeq \frac{1}{2} (e^{i\phi}-e^{-i\phi}) \simeq \sin\phi \]
+Which mimic a classical electric field. If we introduce a phase operator $\hat{\varphi}$ of the field, a new uncertainty relation arise $\Delta \hat{N} \Delta \hat{\varphi} \ge 1$. Furthermore photon number is not always conserved, indeed for photons super selection rules don't exist.
+\subsection{Coherent states}
+Coherent states $\ket{\psi}$, also called quasiclassical state, are those states that give us the classical limit, i.e. the expectation value is our classical field, as well as for the energy
+\[\mathbf{E}_{cl}(\x,t) = \braket{\psi|\hat{\mathbf{E}}|\psi} \qquad H_{cl} = \braket{\psi|\hat{H}|\psi} \]
+Hence we try to find a minimal energy state for a given field. In the case of one mode, this minimal state $\ket{\psi}$  an eigenstate of the annihilation operator $a$.
+\[a\ket{\psi} = \alpha \ket{\psi}\equiv \alpha\ket{\alpha} \qquad \alpha\in\C\] 
+the expectation value on this state is
+\[\braket{\alpha|\mathbf{E}(\x,t)|\alpha} = -i \sqrt{\frac{\hbar \omega}{2\varepsilon_0}} \mathbf{u}_0\braket{\alpha|a-a^\dagger |\alpha} = i \sqrt{\frac{\hbar \omega}{2\varepsilon_0}} \mathbf{u}_0 (\alpha^* - \alpha) \simeq 2f_n(x)\]
+and for the energy
+\[\braket{\alpha|\hat{H}|\alpha} = \hbar \omega |\alpha|^2\]
 
 \end{document}
  
