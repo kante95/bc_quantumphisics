@@ -67,6 +67,7 @@ bottom=3cm, bindingoffset=1cm,headheight=110pt]{geometry}
 \fancyfoot[C]{\thepage}
 \begin{document}
 \maketitle
+\tableofcontents
 \section{Quantum model of light}
 \subsection{Introduction}
 Historically the first quantum model of light is due to Planck, he developed a theory where light is quantized and it is exchanged with matter in packages. Thanks to this theory he could explain the black body radiation. The energy of light is therefore
@@ -208,6 +209,35 @@ the expectation value on this state is
 \[\braket{\alpha|\mathbf{E}(\x,t)|\alpha} = -i \sqrt{\frac{\hbar \omega}{2\varepsilon_0}} \mathbf{u}_0\braket{\alpha|a-a^\dagger |\alpha} = i \sqrt{\frac{\hbar \omega}{2\varepsilon_0}} \mathbf{u}_0 (\alpha^* - \alpha) \simeq 2f_n(x)\]
 and for the energy
 \[\braket{\alpha|\hat{H}|\alpha} = \hbar \omega |\alpha|^2\]
+the state $\ket{alpha}$ is a shifted vacuum state, in fact it is possible to define the displacement operator
+\[\hat{D}(x) = e^{\alpha a^\dagger - \alpha^* a}\]
+if this operator is applied to the vacuum state, we get a coherent state $\hat{D}(x) \ket{0} = \ket{\alpha}$. Using the Baker–Campbell–Hausdorff formula to rewrite the displacement operator we can write the vacuum state as
+\[\ket{\alpha} = \hat{D}(x) \ket{0} = e^{-\frac{|\alpha|^2}{2}}\sum_{n=0}^\infty \frac{\alpha^n}{n!}(a^\dagger)^n \ket{0} = e^{-\frac{|\alpha|^2}{2}}\sum_{n=0}^\infty \frac{\alpha^n}{\sqrt{n!}}\ket{n}\]
+The probability of having a state $\ket{n_0}$ is
+\[P(n_0) = |\braket{n_0|\alpha}|^2 = \frac{|\alpha|^{2n_0}}{n_0!} e^{-|\alpha|^2}\]
+in the special case of $n_0=0$ we have the so called error rate $P(0) = e^{-|\alpha|^2}$. Coherent states are not orthonormal, in fact
+\[\braket{\alpha|\beta} =e^{\alpha^*\beta -\frac{|\alpha|^2+|\beta|^2}{2}} \]
+Moreover, coherent states are overcomplete, i.e. 
+\[\int d^2\alpha \ket{\alpha}\bra{\alpha} = \pi \mathbbm{1}\]
+\subsection{Squeezed state}
+
+\subsection{Jaynes Cummings model}
+This is the central model of quantum optics, it describes the coupling between light and atoms. In an atom, electrons are present, and they are subject to a given potential $V(r)$, which is usually the Coulomb potential of the nucleus. The Hamiltonian for an electron is $H_A = p^2/2m_e + V(r)$, and there are bound states with $E<0$. These bond states are labelled with three quantum numbers $(n,l,m)$ and the corresponding states are a basis for the atomic Hilbert space. Therefore, a state can be expressed as $\ket{\psi} = \sum_{n,l,m}c_{n,l,m}\ket{nlm}$ . 
+As notation for a state we write $\ket{i} = \ket{nlm}$ as the state with energy $E_i$. With this notation we can write the Hamiltonian as
+\[H_A = \sum_i \hbar \omega_i \ket{i}\bra{i} = \sum_i \hbar \omega_i \sigma_{ii}, \]
+where we have also defined the transition operator $\sigma_{ij} = \ket{i}\bra{j}$.\\
+Photons are particles with energy, momentum, and angular momentum $l=1$. The Hamiltonian for the field can be written as $H_F = \sum_i \hbar \omega_i a^\dagger_ia_i$. The interaction between the atom and the field is treated as a perturbation and it has as Hamiltonian $H_{ww} = -\mathbf{u}\cdot \mathbf{E}(\x_a,t)$, where $\x_a$ is the position of the atom, and the the atom is considered a dipole with a dipole moment $\mathbf{u}$. Another assumption is that the field $\mathbf{E}$ is constant in the atom, i.e. the dimension of the atom is much smaller then the wavelength of the field. Hence, we can expand our electric field in series $\mathbf{E}(\x,t) = \mathbf{E}(\x_a,t) + \mathbf{\nabla}\cdot \mathbf{E} + \dots$. We neglect every term but the first one, this is usually called dipole approximation.\\
+The total Hamiltonian of the system is 
+\[H = H_A + H_F +H_{ww} = \sum_i \hbar \omega_i \sigma_{ii} + \sum_i \hbar \omega_i a^\dagger_ia_i -\mathbf{u}\cdot \mathbf{E}(\x_a,t). \]
+Let us study the simplest case, that is one mode field and two level atom. In this case the Hamiltonian for the system, aka the Jaynes Cummings model, can be written as
+\[H_{JC} = \hbar \omega_1 \ket{1}\bra{1} + \hbar \omega_2 \ket{2}\bra{2} + \hbar \omega a^\dagger a + i\hbar(\sigma_{12}+\sigma_{21})(a-a^\dagger).\]
+We can rewrite our Hamiltonian using the raising and  lowering operators $\sigma^-\equiv \sigma_{12},\sigma^+\equiv \sigma_{21}$:
+\[H_{JC} = \hbar \omega_1(\ket{1}\bra{1} +  \ket{2}\bra{2}) + \hbar(\omega_2-\omega_1)\ket{2}\bra{2} + \hbar\omega a^\dagger a + i\hbar g(\sigma^+ + \sigma^-)(a-a^\dagger), \]
+the first term is only a shift in energy and thus can be neglected, moreover we can define $\omega_a = \omega_2 - \omega_1$. Hence the Hamiltonian now is
+\[H_{JC} =  \hbar\omega_a\ket{2}\bra{2} + \hbar \omega a^\dagger a + i\hbar g(\sigma^+ + \sigma^-)(a-a^\dagger). \]
+Let us focus on the last term, if we expand the product we end up with the terms $\sigma^+a$, which corresponds to absorption, $\sigma^-a^\dagger$, that is emission, and two terms $\sigma^+a^\dagger,\sigma^-a$ which don't conserve energy and therefore we should not consider them. Another assumption is that the field is in resonance with the atom, i.e. $\omega_a \simeq \omega$. With all this we can write the final form of the Jaynes Cummings Hamiltonian:
+\[H_{JC} =  \hbar\omega\sigma^+\sigma^- + \hbar\omega a^\dagger a + \hbar g(\sigma^+a + \sigma^-a^\dagger). \]
+
 
 \end{document}
  
